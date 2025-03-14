@@ -87,11 +87,11 @@ void Socket_Select()
         for(auto &sock : Sockets)
         {
             if(FD_ISSET(sock.socket, &read_set))
-                sock.callback(sock.socket, SOCKET_READ, sock.data);
+                sock.callback(sock.socket, SOCKEV_READ, sock.data);
             if(FD_ISSET(sock.socket, &write_set))
-                sock.callback(sock.socket, SOCKET_WRITE, sock.data);
+                sock.callback(sock.socket, SOCKEV_WRITE, sock.data);
             if(FD_ISSET(sock.socket, &err_set))
-                sock.callback(sock.socket, SOCKET_ERROR, sock.data);
+                sock.callback(sock.socket, SOCKEV_ERROR, sock.data);
         }
     }
 }

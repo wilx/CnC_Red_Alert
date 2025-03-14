@@ -2,9 +2,9 @@
 
 enum SocketEvent
 {
-    SOCKET_READ,
-    SOCKET_WRITE,
-    SOCKET_ERROR,
+    SOCKEV_READ,
+    SOCKEV_WRITE,
+    SOCKEV_ERROR,
 };
 
 typedef void (*SocketCallback)(int, SocketEvent, void *);
