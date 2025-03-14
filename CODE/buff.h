@@ -68,7 +68,7 @@ class Buffer {
 		/*
 		**	Pointer to the buffer memory.
 		*/
-		void * BufferPtr;
+		char * BufferPtr;
 
 		/*
 		**	The size of the buffer memory.

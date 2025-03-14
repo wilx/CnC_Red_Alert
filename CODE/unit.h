@@ -38,12 +38,12 @@
 #ifndef UNIT_H
 #define UNIT_H
 
+#include "defines.h"
 #include "drive.h"
-#include "radio.h"
-#include "cargo.h"
-#include "mission.h"
-#include	"target.h"
+#include "ccptr.h"
+#include "UnitTypeClass.h"
 
+class UnitTypeClass;
 
 /****************************************************************************
 **	For each instance of a unit (vehicle) in the game, there is one of
@@ -122,7 +122,7 @@ class UnitClass :	public DriveClass
 		static void operator delete(void *ptr);
 		UnitClass(UnitType classid, HousesType house);
 		UnitClass(NoInitClass const & x) : DriveClass(x), Class(x), Reload(x), SecondaryFacing(x) {};
-		operator UnitType(void) const {return Class->Type;};
+		operator UnitType(void) const;
 		virtual ~UnitClass(void);
 
 		/*---------------------------------------------------------------------
@@ -148,7 +148,7 @@ class UnitClass :	public DriveClass
 		*/
 		bool Should_Crush_It(TechnoClass const * it) const;
 		int Credit_Load(void) const;
-		virtual DirType Turret_Facing(void) const {if (Class->IsTurretEquipped) return(SecondaryFacing.Current());return(PrimaryFacing.Current());}
+		virtual DirType Turret_Facing(void) const;
 		int Shape_Number(void) const;
 		virtual int Pip_Count(void) const;
 		virtual InfantryType Crew_Type(void) const;
@@ -240,7 +240,7 @@ class UnitClass :	public DriveClass
 		*/
 		static void Read_INI(CCINIClass & ini);
 		static void Write_INI(CCINIClass & ini);
-		static char *INI_Name(void) {return "UNITS";};
+		static char const *INI_Name(void) {return "UNITS";};
 		bool Load(Straw & file);
 		bool Save(Pipe & file) const;
 };

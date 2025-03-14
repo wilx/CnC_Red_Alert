@@ -42,7 +42,9 @@
 #include "radio.h"
 #include "cargo.h"
 #include "mission.h"
-#include	"target.h"
+#include "target.h"
+
+class VesselTypeClass;
 
 class VesselClass : public DriveClass
 {
@@ -81,7 +83,7 @@ class VesselClass : public DriveClass
 		static void * operator new(size_t size)  throw();
 		static void * operator new(size_t , void * ptr) throw() {return(ptr);};
 		static void operator delete(void *ptr);
-		operator VesselType(void) const {return Class->Type;};
+		operator VesselType(void) const;
 
 		static void Init(void);
 
@@ -94,7 +96,7 @@ class VesselClass : public DriveClass
 		void Combat_AI(void);
 		bool Edge_Of_World_AI(void);
 		void Repair_AI(void);
-		virtual DirType Turret_Facing(void) const {if (Class->IsTurretEquipped) return(SecondaryFacing.Current());return(PrimaryFacing.Current());}
+		virtual DirType Turret_Facing(void) const;
 		virtual bool Start_Driver(COORDINATE & headto);
 		virtual int Mission_Retreat(void);
 		virtual int Mission_Unload(void);
@@ -128,7 +130,7 @@ class VesselClass : public DriveClass
 		*/
 		static void Read_INI(CCINIClass & ini);
 		static void Write_INI(CCINIClass & ini);
-		static char * INI_Name(void) {return "SHIPS";};
+		static char const * INI_Name(void) {return "SHIPS";};
 		bool Load(Straw & file);
 		bool Save(Pipe & file) const;
 

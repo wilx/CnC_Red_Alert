@@ -168,22 +168,7 @@ class TPoint2D
 #endif
 
 
-/**********************************************************************
-**	This class is solely used as a parameter to a constructor that does
-**	absolutely no initialization to the object being constructed. By using
-**	this method, it is possible to load and save data directly from a
-**	class that has virtual functions. The construction process automatically
-**	takes care of initializing the virtual function table pointer and the
-**	rest of the constructor doesn't initialize any data members. After loading
-**	into a class object, simply perform an in-place new operation.
-*/
-#ifndef NOINITCLASS
-#define NOINITCLASS
-struct NoInitClass {
-	public:
-		void operator () (void) const {};
-};
-#endif
+#include "noinitclass.h"
 
 
 #define WWMEM_H
@@ -294,7 +279,7 @@ extern long LParam;
 #endif
 
 extern long Frame;
-CELL Coord_Cell(COORDINATE coord);
+#include "coord.h"
 
 #include	"utracker.h"
 #include	"crate.h"
@@ -781,7 +766,7 @@ GameType Select_Serial_Dialog( void );
 int Com_Scenario_Dialog(bool skirmish=false);
 int Com_Show_Scenario_Dialog(void);
 
-void Smart_Printf( char *format, ... );
+void Smart_Printf( char const *format, ... );
 void Hex_Dump_Data( char *buffer, int length );
 void itoh( int i, char *s);
 void Log_Start_Time( char *string );

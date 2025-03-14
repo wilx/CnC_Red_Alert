@@ -38,6 +38,11 @@
 #ifndef ABSTRACT_H
 #define ABSTRACT_H
 
+#include "noinitclass.h"
+#include "defines.h"
+#include "face.h"
+#include "coord.h"
+
 DirType Direction(CELL cell1, CELL cell2);
 DirType Direction(COORDINATE coord1, COORDINATE coord2);
 int Distance(COORDINATE coord1, COORDINATE coord2);

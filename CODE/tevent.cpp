@@ -50,7 +50,7 @@
 /*
 **	This is the text name for all of the trigger events. These are used by the scenario editor
 */
-const char * EventText[TEVENT_COUNT] = {
+const char const * const EventText[TEVENT_COUNT] = {
 	"-No Event-",
 	"Entered by...",
 	"Spied by...",

@@ -38,6 +38,8 @@
 #ifndef FACE_H
 #define FACE_H
 
+#include <cstdint>
+
 // Enumerations of the facing values returned from Desired_Facing().
 typedef enum DirType : uint8_t {
 	DIR_MIN=0,

@@ -788,7 +788,7 @@ void WinModemClass::Serial_Port_Close (void)
  *    1/10/96 2:26PM ST : Created                                                              *
  *=============================================================================================*/
 
-void Smart_Printf( char *format, ... );
+void Smart_Printf( char const *format, ... );
 BOOL WinModemClass::Read_Serial_Chars (void)
 {
 	DWORD	bytes_read;				//amount of data read this time

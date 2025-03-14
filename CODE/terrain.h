@@ -41,6 +41,7 @@
 #include	"object.h"
 #include	"type.h"
 
+class TerrainTypeClass;
 
 /****************************************************************************
 **	Each type of terrain has certain pieces of static information associated
@@ -64,7 +65,7 @@ class TerrainClass : public ObjectClass, public StageClass
 		TerrainClass(TerrainType id, CELL cell);
 		TerrainClass(NoInitClass const & x) : ObjectClass(x), Class(x), StageClass(x) {};
 		virtual ~TerrainClass(void);
-		operator TerrainType(void) const {return Class->Type;};
+		operator TerrainType(void) const;
 
 		static void Init(void);
 
@@ -76,7 +77,7 @@ class TerrainClass : public ObjectClass, public StageClass
 		/*
 		**	Query functions.
 		*/
-		virtual ObjectTypeClass const & Class_Of(void) const {return *Class;};
+		virtual ObjectTypeClass const & Class_Of(void) const;
 
 		/*
 		**	Coordinate inquiry functions. These are used for both display and
@@ -84,7 +85,7 @@ class TerrainClass : public ObjectClass, public StageClass
 		*/
 		virtual COORDINATE Center_Coord(void) const;
 		virtual COORDINATE Render_Coord(void) const {return Coord;};
-		virtual COORDINATE Sort_Y(void) const {return Coord_Add(Coord, Class->CenterBase);};
+		virtual COORDINATE Sort_Y(void) const;
 		virtual COORDINATE Target_Coord(void) const;
 
 		/*
@@ -131,7 +132,7 @@ class TerrainClass : public ObjectClass, public StageClass
 		*/
 		static void Read_INI(CCINIClass & ini);
 		static void Write_INI(CCINIClass & ini);
-		static char *INI_Name(void) {return "TERRAIN";};
+		static char const *INI_Name(void) {return "TERRAIN";};
 		bool Load(Straw & file);
 		bool Save(Pipe & file) const;
 

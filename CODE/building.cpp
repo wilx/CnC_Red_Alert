@@ -1642,6 +1642,8 @@ BuildingClass::~BuildingClass(void)
 	ID = -1;
 }
 
+BuildingClass::operator StructType(void) const {return Class->Type;}
+
 
 /***********************************************************************************************
  * BuildingClass::Drop_Debris -- Drops rubble when building is destroyed.                      *
@@ -1863,6 +1865,8 @@ void BuildingClass::Init(void)
 {
 	Buildings.Free_All();
 }
+
+AnimControlType const * BuildingClass::Fetch_Anim_Control(void) {return (&Class->Anims[BState]);}
 
 
 /***********************************************************************************************
@@ -3206,6 +3210,9 @@ bool BuildingClass::Can_Demolish(void) const
 	}
 	return(false);
 }
+
+
+ObjectTypeClass const & BuildingClass::Class_Of(void) const {return *Class;}
 
 
 /***********************************************************************************************

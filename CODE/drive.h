@@ -39,6 +39,7 @@
 #define DRIVE_H
 
 #include	"foot.h"
+#include "CDTimerClass.h"
 
 /****************************************************************************
 **	Movable objects are handled by this class definition. Moveable objects

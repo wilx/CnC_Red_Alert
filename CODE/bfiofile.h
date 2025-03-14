@@ -80,7 +80,7 @@ class BufferIOFileClass : public RawFileClass
 
 		int BufferRights;
 
-		void *Buffer;
+		char *Buffer;
 
 		long BufferSize;
 		long BufferPos;

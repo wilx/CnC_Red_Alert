@@ -76,7 +76,7 @@ static VQAConfig _defaultconfig = {
 	/* NotifyFlags: Flags representing the events the client wishes to be
 	 * notified about during playback.
 	 */
-	NULL,
+	0,
 
 	/* Vmode: Video mode to use. */
 	MCGA,

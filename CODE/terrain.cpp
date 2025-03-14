@@ -83,6 +83,8 @@ TerrainClass::~TerrainClass(void)
 	}
 }
 
+TerrainClass::operator TerrainType(void) const {return Class->Type;}
+
 
 /***********************************************************************************************
  * TerrainClass::Take_Damage -- Damages the terrain object as specified.                       *
@@ -601,6 +603,9 @@ void TerrainClass::Start_To_Crumble(void)
 }
 
 
+ObjectTypeClass const & TerrainClass::Class_Of(void) const {return *Class;};
+
+
 /***********************************************************************************************
  * TerrainClass::Limbo -- Handles terrain specific limbo action.                               *
  *                                                                                             *
@@ -650,6 +655,9 @@ COORDINATE TerrainClass::Center_Coord(void) const
 
 	return(Coord_Add(Coord, Class->CenterBase));
 }
+
+
+COORDINATE TerrainClass::Sort_Y(void) const {return Coord_Add(Coord, Class->CenterBase);};
 
 
 /***********************************************************************************************

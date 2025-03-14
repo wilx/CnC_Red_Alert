@@ -39,6 +39,11 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
+#include "defines.h"
+#include "noinitclass.h"
+#include "ccini.h"
+#include "BulletTypeClass.h"
+#include "warhead.h"
 
 /**********************************************************************
 **	This is the constant data associated with a weapon. Some objects

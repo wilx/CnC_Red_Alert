@@ -97,7 +97,7 @@ static bool Dial_Modem( SerialSettingsType *settings, bool reconnect );
 static bool Answer_Modem( SerialSettingsType *settings, bool reconnect );
 static void Modem_Echo( char c );
 
-void Smart_Printf( char *format, ... );
+void Smart_Printf( char const *format, ... );
 void Hex_Dump_Data( char *buffer, int length );
 void itoh( int i, char *s);
 
@@ -924,7 +924,7 @@ GameType Select_Serial_Dialog( void )
 	/*
 	** Button Enumerations
 	*/
-	enum {
+	enum : unsigned char {
 		BUTTON_DIAL = 100,
 		BUTTON_ANSWER,
 		BUTTON_NULLMODEM,
@@ -937,7 +937,7 @@ GameType Select_Serial_Dialog( void )
 	/*
 	** Redraw values: in order from "top" to "bottom" layer of the dialog
 	*/
-	typedef enum {
+	typedef enum : unsigned char {
 		REDRAW_NONE = 0,
 		REDRAW_BUTTONS,
 		REDRAW_BACKGROUND,
@@ -1079,7 +1079,7 @@ GameType Select_Serial_Dialog( void )
 				pressed = true;
 				break;
 
-			case (BUTTON_NULLMODEM | KN_BUTTON):
+			case int(BUTTON_NULLMODEM | KN_BUTTON):
 				selection = BUTTON_NULLMODEM;
 				pressed = true;
 				break;
@@ -1523,7 +1523,7 @@ void Advanced_Modem_Settings (SerialSettingsType *settings)
 		/*
 		---------------------------- Process input ----------------------------
 		*/
-		switch (input) {
+		switch ((int)input) {
 			case (BUTTON_COMPRESSION | KN_BUTTON):
 				settings->Compression = settings->Compression ^ 1;
 				strcpy (compress_text, settings->Compression ?
@@ -1784,7 +1784,7 @@ static int Com_Settings_Dialog( SerialSettingsType *settings )
 		REDRAW_ALL = REDRAW_BACKGROUND
 	} RedrawType;
 
-	static char *portname[4] = {
+	static char const * const portname[4] = {
 		"COM1 - 3F8",
 		"COM2 - 2F8",
 		"COM3 - 3E8",
@@ -1814,7 +1814,7 @@ static int Com_Settings_Dialog( SerialSettingsType *settings )
 #endif	//WIN32
 
 #ifdef WIN32
-	static char *baudname[5] = {
+	static char const * const baudname[5] = {
 		"14400",
 		"19200",
 		"28800",
@@ -1825,7 +1825,7 @@ static int Com_Settings_Dialog( SerialSettingsType *settings )
 	static char modemnames[10][MODEM_NAME_MAX];
 
 #else	//WIN32
-	static char *baudname[5] = {
+	static char const * const baudname[5] = {
 		"9600",
 		"14400",
 		"19200",
@@ -7542,7 +7542,7 @@ static void Modem_Echo( char c )
 }	/* end of Modem_Echo */
 
 
-void Smart_Printf( char *format, ... )
+void Smart_Printf( char const *format, ... )
 {
 	va_list arglist;
 	char buf[501];

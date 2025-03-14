@@ -214,7 +214,7 @@ bool BufferIOFileClass::Cache( long size, void * ptr )
 	}
 
 	if (ptr) {
-		Buffer = ptr;
+		Buffer = reinterpret_cast<char *>(ptr);
 	} else {
 		Buffer = new char [BufferSize];
 	}

@@ -41,7 +41,9 @@
 #include	"radio.h"
 #include	"fly.h"
 #include	"target.h"
+#include "defines.h"
 
+class AircraftTypeClass;
 
 /*
 **	This aircraft class is used for all flying sentient objects. This includes fixed wing
@@ -60,7 +62,7 @@ class AircraftClass : public FootClass, public FlyClass
 		static void * operator new(size_t) throw();
 		static void * operator new(size_t, void * ptr) throw() {return(ptr);};
 		static void operator delete(void *);
-		operator AircraftType(void) const {return Class->Type;};
+		operator AircraftType(void) const;
 		AircraftClass(AircraftType classid, HousesType house);
 		AircraftClass(NoInitClass const & x) : FootClass(x), FlyClass(x), Class(x), SecondaryFacing(x), SightTimer(x) {};
 		virtual ~AircraftClass(void);
@@ -91,7 +93,7 @@ class AircraftClass : public FootClass, public FlyClass
 		virtual DirType Turret_Facing(void) const {return(SecondaryFacing.Current());}
 		int Shape_Number(void) const;
 		virtual MoveType Can_Enter_Cell(CELL cell, FacingType facing=FACING_NONE) const;
-		virtual ObjectTypeClass const & Class_Of(void) const {return *Class;};
+		virtual ObjectTypeClass const & Class_Of(void) const;
 		virtual ActionType What_Action(ObjectClass const * target) const;
 		virtual ActionType What_Action(CELL cell) const;
 		virtual DirType Desired_Load_Dir(ObjectClass * passenger, CELL & moveto) const;
@@ -172,7 +174,7 @@ class AircraftClass : public FootClass, public FlyClass
 		**	File I/O.
 		*/
 		static void Read_INI(CCINIClass & ini);
-		static char * INI_Name(void) {return "AIRCRAFT";};
+		static char const * INI_Name(void) {return "AIRCRAFT";};
 		bool Load(Straw & file);
 		bool Save(Pipe & file) const;
 

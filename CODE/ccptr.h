@@ -39,6 +39,10 @@
 #ifndef CCPTR_H
 #define CCPTR_H
 
+#include "noinitclass.h"
+#include "FixedHeapClass.h"
+
+
 /*
 **	The CCPtr class is designed for a specific purpose. It functions like a pointer except that
 **	it requires no fixups for saving and loading. If pointer fixups are not an issue, than using

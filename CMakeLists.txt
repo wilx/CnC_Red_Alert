@@ -12,12 +12,13 @@ if(MSVC)
     )
 else()
     # -Wno-changes-meaning/-Wnarrowing to compile, others for noise
-    add_compile_options(-Wno-error=changes-meaning -Wno-error=narrowing -Wno-write-strings)
+    add_compile_options(-Wno-error=changes-meaning -Wno-error=narrowing)
     # workarounds
     add_compile_definitions(-D__cdecl= -D__far= -D__stdcall= -Dcdecl= -Dfar=)
 endif()
 
 add_compile_definitions(-DWIN32) # hopefully easier than DOS
+add_compile_definitions(-Dregister=/*register*/)
 
 
 add_subdirectory(port)

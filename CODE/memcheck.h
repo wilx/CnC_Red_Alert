@@ -21,7 +21,7 @@
 
                     MemCheck 3.0 Professional for DOS
 
-            Copyright (c) 1990-1994, StratosWare Corporation.  
+            Copyright (c) 1990-1994, StratosWare Corporation.
                            All rights reserved.
 
                              1-800-WE-DEBUG
@@ -32,7 +32,7 @@
         each source file which is to be memory checked, and BEFORE
         any code that performs any operations on allocated pointers.
         If it isn't, MemCheck will not pick up source file and line
-        information for intercepted functions. 
+        information for intercepted functions.
 
         The MCCONFIG.EXE utility distributed with MemCheck 3.0
         will do this safely and quickly for you.
@@ -45,9 +45,9 @@
         ---------------
         To ENTIRELY remove MemCheck from your code, just #define
         the constant "NOMEMCHECK", or equivalently, "NOMC".
-        
-        This header file will then automatically 'evaporate' all 
-        MemCheck 3.0 calls.  This is MUCH PREFERABLE to placing 
+
+        This header file will then automatically 'evaporate' all
+        MemCheck 3.0 calls.  This is MUCH PREFERABLE to placing
         #if-#endif's around the header file's inclusion, as in
 
                     #ifdef DEBUG        // DON'T DO THIS!
@@ -78,7 +78,7 @@
                         Associated DOSX286 with _PROTECTED_ for Phar Lap
                         Added MC_SET_EXCEPTF, mc_set/get_exceptf()
     KWB     08/17/94    Added new[] support filtering (_CPP_ANSI20_)
-    KWB     08/18/94    Changed _MCFARCALL to _MCFARGLUE 
+    KWB     08/18/94    Changed _MCFARCALL to _MCFARGLUE
     KWB     09/13/94    Added erf_printf as alias for erf_stdout
     KWB     09/14/94    Added endf_summary
     KWB     09/21/94    Added MCCRITF and mc_set_critf() & related
@@ -136,9 +136,9 @@
 
 /*  Maintain source code compatibility with version 2.1.
     Buffer registration is simplified to
-    just calling "mc_register", regardless of model.  
-    Same with buffer checking, e.g. "mc_check_far" 
-    and "mc_check_near" are rolled into "mc_check". 
+    just calling "mc_register", regardless of model.
+    Same with buffer checking, e.g. "mc_check_far"
+    and "mc_check_near" are rolled into "mc_check".
 */
 #define mc_register_near(p,s)   mc_register((void _MCFAR *)(p),s)
 #define mc_register_far(p,s)    mc_register((void _MCFAR *)(p),s)
@@ -150,7 +150,7 @@
 /*  Error Number Definitions
     Returned by mc_endcheck() and mc_error_flags().
     In MemCheck 3.0, there's now a global error number much
-    like the "errno" variable in standard C.   
+    like the "errno" variable in standard C.
 */
 #define MCE_NO_ERROR            0       /* it's debugging time & all well */
 #define MCE_NULL_SOURCE         1       /* null source ptr on copy */
@@ -168,16 +168,16 @@
 #define MCE_INVALID_PTR         11      /* bad ptr on free, realloc */
 #define MCE_DEST_OVERWRITE      12      /* copy too big for dest buffer */
 #define MCE_OUT_OF_MEMORY       13      /* out of memory */
-#define MCE_OOM                 MCE_OUT_OF_MEMORY   
+#define MCE_OOM                 MCE_OUT_OF_MEMORY
 #define MCE_GPF_PTR             14      /* ptr caused GPF */
 
 
-/*  MemCheck Error Flags 
+/*  MemCheck Error Flags
 
-    The MemCheck error flag is just an unsigned long 
-    (specifically, a MCEFLAGS typedef) with "sticky" bits 
-    corresponding to the above MCE_... error numbers.  
-    You can use the error flags macro MC_EFLAG(e) to 
+    The MemCheck error flag is just an unsigned long
+    (specifically, a MCEFLAGS typedef) with "sticky" bits
+    corresponding to the above MCE_... error numbers.
+    You can use the error flags macro MC_EFLAG(e) to
     test the global MC_Errno double flag word.
 */
 /* Returns a long word with the e-th bit set */
@@ -196,7 +196,7 @@
 
 /* *** MemCheck Compiler Constant Definitions *** */
 
-/* 
+/*
     Compiler            Defines
     --------            -------
     Microsoft           _CC_MSC_, _CC_MSC_COMPATIBLE_
@@ -223,13 +223,13 @@
     LCODE               Defined if large code model
     LDATA               Defined if large data model
     STACKTOP            Highest stack address (top)
-    STACKEND            Lowest stack address 
+    STACKEND            Lowest stack address
     STACKLEN            Stack length (top - end)
     _CPP_ANSI20_        Compiler supports C++ 2.0, e.g. new[]
 
     * If _CC32_ is defined, _PROTECTED_ is also defined
 */
-        
+
 
 #ifndef _CCDEFS_H_
 #define _CCDEFS_H_
@@ -322,9 +322,9 @@ extern "C" {
         __TURBOC__      Gives the current Turbo C version
                         number, a hexadecimal number.  Version
                         1.0 id 0x1000; version 1.2 is 0x0102, etc.
-        __TINY__, __SMALL__, __MEDIUM__, 
+        __TINY__, __SMALL__, __MEDIUM__,
         __COMPACT__, __LARGE__, __HUGE__
-                        Model defintions 
+                        Model defintions
         __MSDOS__       Signals that we're not yet in the
                         twenty-first century
 */
@@ -342,25 +342,25 @@ extern "C" {
 #   define _CC_MSC_COMPATIBLE_
 #   define _CC32_           /* flat model */
 
-#elif defined(__WATCOMC__) 
-/*  
+#elif defined(__WATCOMC__)
+/*
         __WATCOMC__     Used to determine if the WATCOM C
                         or C/386 compiler is compiling
         __386__         identifies the target machine as an
                         Intel 80386 under the WATCOM C/386 compiler
         MSDOS           Signals that we're not yet in the
                         twenty-first century
-        __FLAT__, __SMALL__, __MEDIUM__, 
-        __COMPACT__, __LARGE__  
+        __FLAT__, __SMALL__, __MEDIUM__,
+        __COMPACT__, __LARGE__
                         Model defintions (flat is default)
                         Also id's MSC-compatible model defines
 
         8.5 and later:
         __WINDOWS__     Identifies 16-bit Windows ("zw" or "zW" opts)
-        __WINDOWS_386__ 32-bit Microsoft Windows "zW" opt 
-        __NETWARE_386__ Novell Netware 386, defined by the 
-                        Novell/Watcom C 
-        __OS2__         IBM OS/2-hosted version of Watcom 
+        __WINDOWS_386__ 32-bit Microsoft Windows "zW" opt
+        __NETWARE_386__ Novell Netware 386, defined by the
+                        Novell/Watcom C
+        __OS2__         IBM OS/2-hosted version of Watcom
 */
 #   define _CC_WATCOM_      /* Watcom C product */
 #   define _CC_MSC_COMPATIBLE_
@@ -399,14 +399,14 @@ extern "C" {
 
     Microsoft C 5.0 is NOT supported (it's non-ANSI).
 */
-    
+
 #endif  /* compiler constant definitions */
 
 /* END of _CC..._ name setups; ripple & alias */
 
 /* Sheer utility & avoidance of !_CC32_ */
 #ifndef _CC32_
-#   define _CC16_   
+#   define _CC16_
 #endif
 
 /* 32-bit compilers are always protected mode */
@@ -446,7 +446,7 @@ extern "C" {
 /*******************************************************************/
 /*******************************************************************/
 
-/*  *** Code and Data Size Constants *** 
+/*  *** Code and Data Size Constants ***
     LCODE not used by this header file.
     LDATA *is* used, however.
 
@@ -561,7 +561,7 @@ extern "C" {
 
 #else                   /* Unknown compiler ---------------- */
 
-#error Unknown compiler at __FILE__(__LINE__)
+#warning Unknown compiler at __FILE__(__LINE__)
 
 #endif      /* defining stack top, end */
 
@@ -607,7 +607,7 @@ extern "C" {
 /* *** MCID Macro *** */
 
 /*  Allows later flexibility in assigning mapping...
-    Also makes MCIDs formulaic 
+    Also makes MCIDs formulaic
 */
 #define _MCID(f)    (MCID)(__paste(MCID_,f))
 
@@ -787,7 +787,7 @@ extern "C" {
 #endif
 
 
-/* 
+/*
     'TOUCH' macro so high warning levels don't generate
     'unreferenced variable' warnings, especially when
     making Production libraries... All MemCheck code
@@ -813,7 +813,7 @@ extern "C" {
 #define D_AlignSize     sizeof(int)     /* align returned memory ptrs */
 
 /*  Number of bytes to copy from null segment (to determine null
-    pointer assignments) 
+    pointer assignments)
 */
 #define D_NULLCHECK_BYTES_FAR       16      /* at 0000:0000 (far NULL) */
 #define D_NULLCHECK_BYTES_NEAR      16      /* at   DS:0000 (near NULL) */
@@ -822,7 +822,7 @@ extern "C" {
 
 /* Unroll the double-negative */
 /*
-    Debugging code specific to MemCheck can be 
+    Debugging code specific to MemCheck can be
     conditionally compiled by placing it within
     #if-#endif sections:  (NOTE that this is NOT
     required when just using API functions)
@@ -845,7 +845,7 @@ extern "C" {
     (Both approaches work equally well, however...)
 */
 #ifndef NOMEMCHECK      /* MemCheck active */
-#define MEMCHECK    
+#define MEMCHECK
 #endif
 
 
@@ -871,39 +871,39 @@ extern "C" {
 #   define  _RTL                        /* RTL calling conv */
 
 /*  WATCOM C++ does not currently (2/17/94)
-    accept "cdecl" as a modifier on variables...  
+    accept "cdecl" as a modifier on variables...
 */
 #   undef _MCVAR
 #   define _MCVAR
 #endif  /* _CC_WATCOM_ */
 
 /*   32-bit compiler-independent stuff */
-#if !defined(_CC32_) 
+#if !defined(_CC32_)
 #define _MCFAR      far
 #define _MCFARCALL  far
 #define _MCNEAR     near
 #define _MCNEARCALL near
 #define _MCHUGE     huge
 #else
-#define _MCFAR  
+#define _MCFAR
 #define _MCFARCALL
 #define _MCNEAR
 #define _MCNEARCALL
-#define _MCHUGE 
+#define _MCHUGE
 #endif  /* _CC32_ */
 
 /*
-    MSC declares the following routines as "far"... 
+    MSC declares the following routines as "far"...
     So does Borland.  WATCOM does not; define glue.
 
-        _fstrset        _fstrnset       _fstrcpy 
+        _fstrset        _fstrnset       _fstrcpy
         _fstrncpy       _fstrcat        _fstrncat
         _fmemset        _fmemmove       _fmemccpy
 */
 #if !defined(_CC_WATCOM_)
 #   define _MCFARGLUE   far
 #else
-#   define _MCFARGLUE   
+#   define _MCFARGLUE
 #endif
 
 
@@ -929,18 +929,18 @@ extern "C" {
 
 
 /*  WATCOM defines its atexit funcs as a "register",
-    which causes a param type mismatch.  
+    which causes a param type mismatch.
     _ATEXITFUNC calling convention smooths this out.
 */
 #if defined (_CC_WATCOM_)
-#   define _ATEXITFUNC  
+#   define _ATEXITFUNC
 #else
 #   define _ATEXITFUNC      _MCCDECL
 #endif
 
 
-/*  MemCheck Tracking Mode 
-    
+/*  MemCheck Tracking Mode
+
     Returned by mc_get_mode().
     Indicates whether information on each allocation
     is being stored in memory or on disk.
@@ -1002,7 +1002,7 @@ extern "C" {
 #define MRFLAG_NO_CHECKBYTES    ( (MRFLAGS) 0x04)
 
 /* Alternate name */
-#define mc_message      mc_debug 
+#define mc_message      mc_debug
 
 /*
     Parameter to mc_check_transfer() that
@@ -1015,7 +1015,7 @@ extern "C" {
 
 /*  Parameter to mc_check_transfer indicating that
     the found memory record is not needed */
-#define NO_MEMREC           ((MEMRECP)NULL) 
+#define NO_MEMREC           ((MEMRECP)NULL)
 #define NOMEMREC            NO_MEMREC
 
 /*  Parameter to mc_check_transfer indicating that
@@ -1040,13 +1040,13 @@ typedef void _MCFAR * (_MCFAR *ROCKETALLOCF)    (size_t);
 typedef void          (_MCFAR *ROCKETFREEF)     (void _MCFAR *);
 
 #pragma pack(1)
-/* 
+/*
     Memory Tracking Structure (MEMREC)
 
     This is the data structure for buffers being
     tracked by MemCheck.
 */
-typedef struct MemRecord 
+typedef struct MemRecord
     {
         MCPTR           ptr;            /* heap/registered ptr */
         MCID            mcid;           /* MemCheck function ID */
@@ -1062,7 +1062,7 @@ typedef struct MemRecord
 /* *** SETTINGS *** */
 /* These are values that describe the life of a MemCheck run. */
 
-typedef struct MCSETTINGS { 
+typedef struct MCSETTINGS {
     /*
         Bit Flag                What
         --- ---------------     -----------------------------------
@@ -1073,11 +1073,11 @@ typedef struct MCSETTINGS {
         4   MCF_NEAR_NULL_CHECK Check for far NULL ptr assigns *
         5   MCF_STANDARD_STACK  Standard stack frame *
         6   MCF_AUTOINIT        Start up automatically *
-        7   MCF_CLEAR_ON_FREE   Clear buffers when freed 
+        7   MCF_CLEAR_ON_FREE   Clear buffers when freed
         8   MCF_DISK_ROCKET     Use DiskRocket options
         9   MCF_IDX_IN_MEMORY   Use memory only for Rocket indexes *
                                 (only if DiskRocket linked)
-        10  MCF_SOURCE_ONLY     Intercept in source code only 
+        10  MCF_SOURCE_ONLY     Intercept in source code only
 
         11 - 31 Reserved
     */
@@ -1149,8 +1149,8 @@ typedef struct {
 #define MCCS_ENTER(pMCCS)   ((*(pMCCS->pLocked))++) /* inc flag */
 #define MCCS_LEAVE(pMCCS)   ((*(pMCCS->pLocked))--) /* dec flag */
 
-/* 
-    Critical section object - ptr to this passed to crit sect callback 
+/*
+    Critical section object - ptr to this passed to crit sect callback
     WARNING:  access these fields ONLY via the MCCS_...() macros.
         To do otherwise subjects you to changes in implementation
         of the underlying coordination of critical section locking.
@@ -1217,9 +1217,9 @@ typedef void (_MCCALLBACK _MCFAR *MCEXCEPTF) (void);
 typedef void (_MCCALLBACK * MCCRITF) (MCCRITSECT *);
 
 
-/*  Stack Frame Handler 
+/*  Stack Frame Handler
 
-    You can define your own function to 
+    You can define your own function to
     record, analyze, or inspect each stack frame
     when mc_stack_trace() is called.
 
@@ -1238,7 +1238,7 @@ typedef void (_MCFAR _MCCDECL *_SSFRAMEHANDLER ) (
     );
 
 /*  Values for "flag" constant parameter to a
-    stack frame handler. 
+    stack frame handler.
 */
 #define TRACE_BAD_FRAME     0x00        /* couldn't recognize frame     */
 #define TRACE_FAR_CALL      0x01        /* frame represents a far call  */
@@ -1339,14 +1339,14 @@ typedef void (_MCFAR _MCCDECL *_SSFRAMEHANDLER ) (
 #   define  mc_memrec_text()                "MemCheck not active"
 #   define  mc_msg_continued()              0
 #   define  mc_nullcheck()                  0
-#   define  mc_null_snapshot() 
-#   define  mc_register(p,s)    
+#   define  mc_null_snapshot()
+#   define  mc_register(p,s)
 #   define  mc_report(_f)
 #   define  mc_set_alignsize(_s)
 #   define  mc_set_breakfile(_f)
 #   define  mc_set_checkbytes(_cb)
 #   define  mc_set_checkf(_f)               (CHECKF)NULL
-#   define  mc_set_critf(_f)                
+#   define  mc_set_critf(_f)
 #   define  mc_set_endf(erf)                (ENDF)NULL
 #   define  mc_set_erf(erf)                 (ERF)NULL
 #   define  mc_set_globalf(_f)              (GLOBALF)NULL
@@ -1356,12 +1356,12 @@ typedef void (_MCFAR _MCCDECL *_SSFRAMEHANDLER ) (
 #   define  mc_set_trackf(_f)               (TRACKF)NULL
 #   define  mc_set_tracefile(_f)
 #   define  mc_set_tree_order(_q)
-#   define  mc_set_track_dir(_dir)          
+#   define  mc_set_track_dir(_dir)
 #   define  mc_source_ptr()                 (MCPTR)NULL
 #   define  mc_stack_trace(_memo)           0
 #   define  mc_startcheck(_erf)
-#   define  mc_unregister(p)                
-#   define  mc_set_exceptf(f)   
+#   define  mc_unregister(p)
+#   define  mc_set_exceptf(f)
 #   define  mc_get_exceptf()                ((MCEXCEPTF)NULL)
 
 /* *** Stock error reporting functions *** */
@@ -1372,31 +1372,31 @@ typedef void (_MCFAR _MCCDECL *_SSFRAMEHANDLER ) (
 #   define  erf_trace(_msg)
 
 /* Internal Helpers */
-#   define  _direct_output(_s)              
+#   define  _direct_output(_s)
 #   define  _mcsl(_f,_l)
 #   define  _mcsl_delete(_f,_l)
 #   define  _mcsl_new(_f,_l)
 #   define  _mcslx(_f,_l,_s)
 #   define  _mc_set_delflag()
-#   define  _mc_set_location(_f,_l)         
+#   define  _mc_set_location(_f,_l)
 #   define  _mc_set_newflag()
 
 /* Link-time compileouts */
 #   define  MC_SET_AUTOINIT(_toggle)
-#   define  MC_SET_CHECK_FREQ(_freq)    
-#   define  MC_SET_CHECKF(_f)   
-#   define  MC_SET_CRITF(_f)    
-#   define  MC_SET_ENDF(_f) 
+#   define  MC_SET_CHECK_FREQ(_freq)
+#   define  MC_SET_CHECKF(_f)
+#   define  MC_SET_CRITF(_f)
+#   define  MC_SET_ENDF(_f)
 #   define  MC_SET_ENV_VAR(_envvarname)
-#   define  MC_SET_ERF(_f)  
-#   define  MC_SET_GLOBALF(_f)  
-#   define  MC_SET_GLOBALEXITF(_f)  
-#   define  MC_SET_LOGFILE(_logfilename)    
+#   define  MC_SET_ERF(_f)
+#   define  MC_SET_GLOBALF(_f)
+#   define  MC_SET_GLOBALEXITF(_f)
+#   define  MC_SET_LOGFILE(_logfilename)
 #   define  MC_SET_PANIC_BUFFERS(_q)
-#   define  MC_SET_SSFH(_f) 
-#   define  MC_SET_STARTF(_f)   
-#   define  MC_SET_TRACKF(_f)   
-#   define  MC_SET_VERIFYF(_f)  
+#   define  MC_SET_SSFH(_f)
+#   define  MC_SET_STARTF(_f)
+#   define  MC_SET_TRACKF(_f)
+#   define  MC_SET_VERIFYF(_f)
 
 /* Back-end direct */
 #define RTL(_f)     _f
@@ -1457,7 +1457,7 @@ extern "C" {
 
 /*  Allow for the possibility of _MCSF_ being
     defined to reference a single, static module
-    filename.  This prevents a multiplicity of 
+    filename.  This prevents a multiplicity of
     static filenames getting added to the DGROUP, e.g.
 
         static char *_thisfile = __FILE__;
@@ -1483,9 +1483,9 @@ extern "C" {
 #endif
 
 
-/* *** Standard ANSI C Includes *** 
+/* *** Standard ANSI C Includes ***
 
-    For va_list function call args 
+    For va_list function call args
     Inclusion of this header won't change
     the behavior of host code.
 */
@@ -1505,12 +1505,12 @@ extern "C" {
 
 #   if !defined (_INC_STRING)   /* C7.x and later optimization */
 #       include <string.h>
-#   endif   
+#   endif
 
 #elif defined(_CC_BORLAND_)
 
 #   if !defined (__ALLOC_H)
-#       include <alloc.h>           
+#       include <alloc.h>
 #   endif
 
 /* String functions must be proto'd before pragmas */
@@ -1643,17 +1643,17 @@ extern  int     _MCAPI mc_check_transfer(
     Write your own "get settings" routine
     to override the one shipped with MemCheck.
     You can hard-wire any settings you like, e.g.
-    always ON for versions of your app shipped to 
+    always ON for versions of your app shipped to
     testers/QA stations, etc.
 */
 extern void _MCCALLBACK mc_get_settings (MCSETTINGS *);
 
 
-/* ***  Callbacks / Functionality Extenders *** 
+/* ***  Callbacks / Functionality Extenders ***
 
     Function Type           Called...
     --------------          ------------------------------
-    Error reporting         To handle each MemCheck error message 
+    Error reporting         To handle each MemCheck error message
     Global Interception     On each MemCheck interception
     Checking                On every data transfer check
     Tracking                On every allocation/deallocation
@@ -1662,9 +1662,9 @@ extern void _MCCALLBACK mc_get_settings (MCSETTINGS *);
 
     Refer to your MemCheck 3.0 manual for further details.
 
-    *** STOCK FUNCTIONS *** 
+    *** STOCK FUNCTIONS ***
     These functions are available in the MemCheck
-    libraries as "ready-made" for your programming 
+    libraries as "ready-made" for your programming
     pleasure in the categories above.
 */
 
@@ -1713,7 +1713,7 @@ extern  void    _MCCALLBACK checkf_dataseg (
     long            /* bytes to copy to dest */
     );
 extern  void    _MCCALLBACK checkf_verify_heap (int,void _MCFAR *,long);
-                            
+
 /* *** Stock Global Interception Functions *** */
 
 extern  void        _MCCALLBACK globalf_default       (void); /* does nothing */
@@ -1810,12 +1810,12 @@ extern unsigned char _MCVAR MC_FreedBufferFillChar;
     These macros are "covers" to insulate you, the developer,
     from the underlying implementation, as well as to provide
     such bennies as compiling clean out of your code when
-    NOMEMCHECK or NOMC is defined.  
-    
+    NOMEMCHECK or NOMC is defined.
+
     Use instead of accessing vars directly!
 
     To use, place the following in ONE MODULE e.g. your main module
-    (any *one* module will work fine) after the MemCheck 
+    (any *one* module will work fine) after the MemCheck
     header file has been included:
 
         #include <memcheck.h>
@@ -1870,7 +1870,7 @@ extern unsigned char _MCVAR MC_FreedBufferFillChar;
             VERIFYF _MCVAR MC_VerifyF   = (_f)
 
 /*  Use the MC_BEGIN_EXCEPTLIST, MC_HANDLE_EXCEPTION,
-    and MC_END_EXCEPTLIST macros to change the exceptions 
+    and MC_END_EXCEPTLIST macros to change the exceptions
     MemCheck handles in protected mode by default.
 
     Usage (exactly as typed):
@@ -1882,7 +1882,7 @@ extern unsigned char _MCVAR MC_FreedBufferFillChar;
             MC_END_EXCEPTLIST
 
     NOTE:
-    To turn off MemCheck's exception handling completely, use 
+    To turn off MemCheck's exception handling completely, use
 
             MC_SET_EXCEPTF(NULL);
 
@@ -1920,13 +1920,13 @@ _VA_DEF(sprintf,int,(char *, const char *, ...))
 /* *** Back-end functions *** */
 
 /*  Macro to access true back-end RTL.
-    Used internally by the MemCheck API functions. 
+    Used internally by the MemCheck API functions.
 */
 #define __paste(x,y)    x ## y
 #define RTL(func)       __paste(func,_mc)
 
 /*  Macro to encapsulate the declaration of
-    the renamed (zapped) back-end rtl 
+    the renamed (zapped) back-end rtl
 */
 #define _RTLDECL(f,rctype,params) \
         extern rctype _RTL RTL(f) params
@@ -1934,9 +1934,9 @@ _VA_DEF(sprintf,int,(char *, const char *, ...))
 
 /*  For the conversion that MSC underwent
     from C 6 to 7, where non-ANSI calls
-    have underbars 
+    have underbars
 */
-#if defined (_CC_MSC_) && !defined (MSC6) 
+#if defined (_CC_MSC_) && !defined (MSC6)
 #if (_MSC_VER >= 700)
 #   define _C7A
 #endif
@@ -1987,7 +1987,7 @@ _RTLDECL(_nfree,    void,       (void _MCNEAR *));
 
 /* *** Borland *** */
 
-#if !defined(_CC_POWERPACK32_)  
+#if !defined(_CC_POWERPACK32_)
 _RTLDECL(farmalloc, void _MCFAR *,  (unsigned long));
 _RTLDECL(farcalloc, void _MCFAR *,  (unsigned long, unsigned long));
 _RTLDECL(farfree,   void,           (void _MCFAR *));
@@ -2001,8 +2001,8 @@ _RTLDECL(_fstrcpy,  char far * _MCFARGLUE,  (char far *,const void far *));
 
 #endif  /* not STDC/ANSI */
 
-/***************************************************************** 
- * --------   Function Call Interception Definitions   --------- * 
+/*****************************************************************
+ * --------   Function Call Interception Definitions   --------- *
  *****************************************************************/
 
 #ifndef MEMCHECK_MODULE
@@ -2023,11 +2023,11 @@ _RTLDECL(_fstrcpy,  char far * _MCFARGLUE,  (char far *,const void far *));
     like "sizeof returns 0" or "Not allowed type in sizeof <expr>".
     These occur for unsized variables declared like
 
-        extern unsigned char gHelpString[];     
+        extern unsigned char gHelpString[];
 
     The optimal solution is to "size" the extern, e.g.
 
-        extern unsigned char gHelpString[80];   
+        extern unsigned char gHelpString[80];
 
     but where this may not be practical, MC_NO_TRANSFER_SIZE may
     be defined on a module-by-module OR project-wide basis.
@@ -2082,9 +2082,9 @@ _RTLDECL(_fstrcpy,  char far * _MCFARGLUE,  (char far *,const void far *));
 
 /*  Eliminate duplicate strings.
     This can save a bit of space in large
-    programs particularly, since each call to 
+    programs particularly, since each call to
     MemCheck references an otherwise separate
-    copy of the current filename. 
+    copy of the current filename.
 */
 #pragma option -d
 
@@ -2149,7 +2149,7 @@ _RTLDECL(_fstrcpy,  char far * _MCFARGLUE,  (char far *,const void far *));
 #define memmove(d,s,n)      _INTERCEPTX(memmove(d,s,n),d)
 #define memset(p,c,n)       _INTERCEPTX(memset(p,c,n),p)
 #define strcat(s1,s2)       _INTERCEPTX(strcat(s1,s2),s1)
-#if defined(_CC_WATCOM_)    
+#if defined(_CC_WATCOM_)
     /* WATCOM forces inlining of strcpy()... see note above */
 #   define strcpy(d,s)      _INTERCEPTX(_mcwatcom_strcpy(d,s),d)
     extern char * _RTL _mcwatcom_strcpy (char *, const char *);
@@ -2163,7 +2163,7 @@ _RTLDECL(_fstrcpy,  char far * _MCFARGLUE,  (char far *,const void far *));
 /*  #define sprintf             _VA_INTERCEPT(sprintf)  */
 #ifndef _lint
 #define sprintf             _INTERCEPT(sprintf)
-#endif  
+#endif
 
 #if defined(_CC_MSC_COMPATIBLE_)    /* *** Microsoft C *** */
 
@@ -2277,7 +2277,7 @@ _RTLDECL(_fstrcpy,  char far * _MCFARGLUE,  (char far *,const void far *));
 
 #else
 
-#error Unknown compiler in MemCheck.h
+#warning Unknown compiler in MemCheck.h
 
 #endif  /* Compiler-specific Function Mapping Section */
 
@@ -2335,12 +2335,12 @@ _RTLDECL(_fstrcpy,  char far * _MCFARGLUE,  (char far *,const void far *));
     these functions are called, instead of the location of
     the calloc() or free().
 
-    If you've used MCCONFIG to configure the Vermont Views source 
-    code, you *must* either NOT include the MemCheck header file 
+    If you've used MCCONFIG to configure the Vermont Views source
+    code, you *must* either NOT include the MemCheck header file
     in the MEM_GET.C and MEM_FREE.C modules, or, if you do, then
     #define NO_INTERCEPT beforehand, e.g.
 
-         Module MEM_GET.C ... 
+         Module MEM_GET.C ...
         :
         #define NO_INTERCEPT
         #include <memcheck.h>
@@ -2494,13 +2494,13 @@ public:
 /*  Method 1: Placement Operators
 
     Use placement operators to trap file and line location transparently
-    on calls to new.  
-    
+    on calls to new.
+
     Thanks for this tip to Dan Saks,
     C and C++ writer, author, teacher, and columnist--buy his books.
     He came through when no one else had a clue!
 
-    Please consult your manual, MemCheck technotes, 
+    Please consult your manual, MemCheck technotes,
     or StratosWare Technical Support (1-800-WE-DEBUG)
     for details on how to configure your project for
     use with an overloaded new placement operator.
@@ -2509,7 +2509,7 @@ public:
 /* Declare overloaded new with placement operators */
 void *operator new (size_t _sz, char *file, int lineno);
 #if defined (_CPP_ANSI20_)
-/*  Array version; only under supporting compilers 
+/*  Array version; only under supporting compilers
     COMMENT LINE OUT if it causes a compile error.
 */
 void *operator new[] (size_t _sz, char *file, int lineno);
@@ -2551,8 +2551,8 @@ void *operator new[] (size_t _sz, char *file, int lineno);
     modification of source code, i.e. "NEW(object)" for "new object",
     should probably be used only if the above overloaded new does
     not work for your code base.
-    
-    Please consult your manual, MemCheck technotes, 
+
+    Please consult your manual, MemCheck technotes,
     or StratosWare Technical Support (1-800-WE-DEBUG)
     for details on how to configure your project for
     use with NEW() and DELETE().

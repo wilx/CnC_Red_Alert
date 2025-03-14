@@ -482,7 +482,7 @@ void VesselTypeClass::Prep_For_Add(void)
  * HISTORY:                                                                                    *
  *   03/20/1996 JLB : Created.                                                                 *
  *=============================================================================================*/
-ObjectClass * VesselTypeClass::Create_One_Of(HouseClass * house) const
+VesselClass * VesselTypeClass::Create_One_Of(HouseClass * house) const
 {
 	return(new VesselClass(Type, house->Class->House));
 }

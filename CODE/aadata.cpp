@@ -452,7 +452,7 @@ void AircraftTypeClass::One_Time(void)
  * HISTORY:                                                                                    *
  *   07/26/1994 JLB : Created.                                                                 *
  *=============================================================================================*/
-ObjectClass * AircraftTypeClass::Create_One_Of(HouseClass * house) const
+AircraftClass * AircraftTypeClass::Create_One_Of(HouseClass * house) const
 {
 	return(new AircraftClass(Type, house->Class->House));
 }

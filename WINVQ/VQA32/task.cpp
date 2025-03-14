@@ -619,7 +619,7 @@ void VQA_GetStats(VQAHandle *vqa, VQAStatistics *stats)
 * SYNOPSIS
 *     Version = VQA_Version()
 *
-*     char *VQA_Version(void);
+*     char const *VQA_Version(void);
 *
 * FUNCTION
 *     Return the version of the VQA player library.
@@ -632,7 +632,7 @@ void VQA_GetStats(VQAHandle *vqa, VQAStatistics *stats)
 *
 ****************************************************************************/
 
-char *VQA_Version(void)
+char const *VQA_Version(void)
 {
 	return(VQA_VERSION);
 }
@@ -646,7 +646,7 @@ char *VQA_Version(void)
 * SYNOPSIS
 *     IDString = VQA_IDString()
 *
-*     char *VQA_IDString(void);
+*     char const *VQA_IDString(void);
 *
 * FUNCTION
 *     Return the ID string of this VQA player library.
@@ -659,7 +659,7 @@ char *VQA_Version(void)
 *
 ****************************************************************************/
 
-char *VQA_IDString(void)
+char const *VQA_IDString(void)
 {
 	return (VQA_IDSTRING);
 }

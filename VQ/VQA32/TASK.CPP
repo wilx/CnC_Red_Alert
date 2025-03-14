@@ -273,7 +273,7 @@ long VQA_Play(VQAHandle *vqa, long mode)
 			/* Start up the movie if is it currently paused. */
 			if (vqabuf->Flags & VQADATF_PAUSED) {
 				vqabuf->Flags &= ~VQADATF_PAUSED;
-			 
+
 				/* Start the audio if it was previously on. */
 				#if(VQAAUDIO_ON)
 				if (config->OptionFlags & VQAOPTF_AUDIO) {
@@ -283,7 +283,7 @@ long VQA_Play(VQAHandle *vqa, long mode)
 
 				VQA_SetTimer((VQAHandleP *)vqa, vqabuf->EndTime, config->TimerMethod);
 			}
-			
+
 			/* Load, Draw, Load, Draw, Load, Draw ... */
 			while ((vqabuf->Flags & (VQADATF_DDONE|VQADATF_LDONE))
 					!= (VQADATF_DDONE|VQADATF_LDONE)) {
@@ -466,7 +466,7 @@ void VQA_GetStats(VQAHandle *vqa, VQAStatistics *stats)
 * SYNOPSIS
 *     Version = VQA_Version()
 *
-*     char *VQA_Version(void);
+*     char const *VQA_Version(void);
 *
 * FUNCTION
 *     Return the version of the VQA player library.
@@ -479,7 +479,7 @@ void VQA_GetStats(VQAHandle *vqa, VQAStatistics *stats)
 *
 ****************************************************************************/
 
-char *VQA_Version(void)
+char const *VQA_Version(void)
 {
 	return(VQA_VERSION);
 }
@@ -493,7 +493,7 @@ char *VQA_Version(void)
 * SYNOPSIS
 *     IDString = VQA_IDString()
 *
-*     char *VQA_IDString(void);
+*     char const *VQA_IDString(void);
 *
 * FUNCTION
 *     Return the ID string of this VQA player library.
@@ -506,7 +506,7 @@ char *VQA_Version(void)
 *
 ****************************************************************************/
 
-char *VQA_IDString(void)
+char const *VQA_IDString(void)
 {
 	return (VQA_IDSTRING);
 }

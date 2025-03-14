@@ -38,6 +38,9 @@
 #ifndef WARHEAD_H
 #define WARHEAD_H
 
+#include "defines.h"
+#include "noinitclass.h"
+#include "fixed.h"
 
 /**********************************************************************
 **	Each of the warhead types has specific characteristics. This structure

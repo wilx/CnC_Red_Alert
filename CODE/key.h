@@ -376,7 +376,7 @@ class WWKeyboardClass
 #define	VK_DOWNRIGHT		  VK_NEXT
 #define	VK_ALT				  VK_MENU
 
-typedef enum KeyASCIIType {
+typedef enum KeyASCIIType : int {
 	//
 	// Define all the KA types as variations of the VK types.  This is
 	// so the KA functions will work properly under windows 95.
@@ -524,7 +524,7 @@ typedef enum KeyASCIIType {
 } KeyASCIIType;
 
 
-typedef enum KeyNumType {
+typedef enum KeyNumType : int {
 	KN_NONE				= 0,
 
 	KN_0 					= VK_0,

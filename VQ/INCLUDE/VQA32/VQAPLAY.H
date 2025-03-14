@@ -314,8 +314,8 @@ long VQA_SeekFrame(VQAHandle *vqa, long frame, long fromwhere);
 /* Information/statistics access routines. */
 void VQA_GetInfo(VQAHandle *vqa, VQAInfo *info);
 void VQA_GetStats(VQAHandle *vqa, VQAStatistics *stats);
-char *VQA_Version(void);
-char *VQA_IDString(void);
+char const *VQA_Version(void);
+char const *VQA_IDString(void);
 
 #endif /* VQAPLAY_H */
 

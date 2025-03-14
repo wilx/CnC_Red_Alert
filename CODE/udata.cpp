@@ -1186,7 +1186,7 @@ bool UnitTypeClass::Create_And_Place(CELL cell, HousesType house) const
  * HISTORY:                                                                                    *
  *   06/07/1994 JLB : Created.                                                                 *
  *=============================================================================================*/
-ObjectClass * UnitTypeClass::Create_One_Of(HouseClass * house) const
+UnitClass * UnitTypeClass::Create_One_Of(HouseClass * house) const
 {
 	return(new UnitClass(Type, house->Class->House));
 }

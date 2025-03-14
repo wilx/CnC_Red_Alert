@@ -128,7 +128,7 @@ static bool _Counts_As_Civ_Evac(ObjectClass const * candidate)
 	/*
 	**	Working infantry object pointer.
 	*/
-	InfantryClass const * inf = (InfantryClass const *)candidate;
+	InfantryClass const * inf = static_cast<InfantryClass const *>(candidate);
 
 	/*
 	**	Certain infantry types will always be considered a civilian evacuation candidate. These
@@ -206,6 +206,8 @@ void AircraftClass::operator delete(void * ptr)
 	}
 	Aircraft.Free((AircraftClass *)ptr);
 }
+
+ AircraftClass::operator AircraftType (void) const {return Class->Type;}
 
 
 /***********************************************************************************************
@@ -3032,6 +3034,9 @@ MoveType AircraftClass::Can_Enter_Cell(CELL cell, FacingType ) const
 
 	return(MOVE_OK);
 }
+
+
+ObjectTypeClass const & AircraftClass::Class_Of(void) const {return *Class;};
 
 
 /***********************************************************************************************

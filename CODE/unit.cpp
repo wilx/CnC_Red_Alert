@@ -220,6 +220,9 @@ void UnitClass::operator delete(void * ptr)
 }
 
 
+UnitClass::operator UnitType(void) const {return Class->Type;}
+
+
 /***********************************************************************************************
  * UnitClass::~UnitClass -- Destructor for unit objects.                                       *
  *                                                                                             *
@@ -4791,6 +4794,8 @@ int UnitClass::Credit_Load(void) const
 {
 	return((Gold * Rule.GoldValue) + (Gems * Rule.GemValue));
 }
+
+DirType UnitClass::Turret_Facing(void) const {if (Class->IsTurretEquipped) return(SecondaryFacing.Current());return(PrimaryFacing.Current());}
 
 
 /***********************************************************************************************

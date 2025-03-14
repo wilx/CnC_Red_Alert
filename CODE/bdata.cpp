@@ -61,6 +61,7 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #include	"function.h"
+#include "building.h"
 
 
 #define FATSHIP
@@ -3291,7 +3292,7 @@ bool BuildingTypeClass::Create_And_Place(CELL cell, HousesType house) const
  * HISTORY:                                                                                    *
  *   06/07/1994 JLB : Created.                                                                 *
  *=============================================================================================*/
-ObjectClass * BuildingTypeClass::Create_One_Of(HouseClass * house) const
+BuildingClass * BuildingTypeClass::Create_One_Of(HouseClass * house) const
 {
 	HousesType htype = HOUSE_NEUTRAL;
 	if (house != NULL) {

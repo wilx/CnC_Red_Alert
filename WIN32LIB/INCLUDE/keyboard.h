@@ -34,10 +34,10 @@
 
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
- 
+
 #include <wwstd.h>
 
-typedef enum {
+typedef enum : int {
 	WWKEY_SHIFT_BIT	= 0x100,
 	WWKEY_CTRL_BIT		= 0x200,
 	WWKEY_ALT_BIT		= 0x400,
@@ -380,7 +380,7 @@ class WWKeyboardClass
 #define	VK_DOWNRIGHT		  VK_NEXT
 #define	VK_ALT				  VK_MENU
 
-enum {
+enum : int {
 	//
 	// Define all the KA types as variations of the VK types.  This is
 	// so the KA functions will work properly under windows 95.

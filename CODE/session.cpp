@@ -51,7 +51,7 @@
 
 #include "function.h"
 #ifndef PORTABLE
-#include <dos.h>			// for station ID computation
+//#include <dos.h>			// for station ID computation
 #endif
 #include <time.h>			// for station ID computation
 

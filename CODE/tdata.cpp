@@ -827,7 +827,7 @@ bool TerrainTypeClass::Create_And_Place(CELL cell, HousesType ) const
  * HISTORY:                                                                                    *
  *   07/19/1994 JLB : Created.                                                                 *
  *=============================================================================================*/
-ObjectClass * TerrainTypeClass::Create_One_Of(HouseClass *) const
+TerrainClass * TerrainTypeClass::Create_One_Of(HouseClass *) const
 {
 	return(new TerrainClass(Type, -1));
 }

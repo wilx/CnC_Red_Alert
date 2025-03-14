@@ -45,10 +45,13 @@
 #include	"target.h"
 #include	"factory.h"
 #include	"techno.h"
+#include "AnimControlType.h"
 
 #define	MAX_DOOR_STAGE	18	// # of frames of door opening on weapons factory
 #define	DOOR_OPEN_STAGE 9	// frame on which the door is entirely open
 #define	MAX_REPAIR_ANIM_STAGE	5	// # of stages of anim for repair center cycling
+
+class BuildingTypeClass;
 
 /****************************************************************************
 **	For each instance of a building in the game, there is one of
@@ -224,7 +227,7 @@ class BuildingClass : public TechnoClass
 		BuildingClass(NoInitClass const & x) : TechnoClass(x), Class(x), CountDown(x), PlacementDelay(x) {};
 #endif
 		virtual ~BuildingClass(void);
-		operator StructType(void) const {return Class->Type;};
+		operator StructType(void) const;
 
 		/*---------------------------------------------------------------------
 		**	Member function prototypes.
@@ -232,7 +235,7 @@ class BuildingClass : public TechnoClass
 		static void Init(void);
 
 		TARGET Target_Scan(void);
-		BuildingTypeClass::AnimControlType const * Fetch_Anim_Control(void) {return (&Class->Anims[BState]);};
+		AnimControlType const * Fetch_Anim_Control(void);
 
 		/*
 		**	Query functions.
@@ -248,7 +251,7 @@ class BuildingClass : public TechnoClass
 		virtual ActionType What_Action(ObjectClass const * target) const;
 		virtual ActionType What_Action(CELL cell) const;
 		virtual bool Can_Demolish(void) const;
-		virtual ObjectTypeClass const & Class_Of(void) const {return *Class;};
+		virtual ObjectTypeClass const & Class_Of(void) const;
 		virtual DirType Fire_Direction(void) const;
 		virtual short const * Overlap_List(bool redraw=false) const;
 		int Shape_Number(void) const;
@@ -343,7 +346,7 @@ class BuildingClass : public TechnoClass
 		*/
 		static void Read_INI(CCINIClass & ini);
 		static void Write_INI(CCINIClass & ini);
-		static char *INI_Name(void) {return "STRUCTURES";};
+		static char const *INI_Name(void) {return "STRUCTURES";};
 		bool Load(Straw & file);
 		bool Save(Pipe & file) const;
 

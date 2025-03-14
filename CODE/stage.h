@@ -38,6 +38,8 @@
 #ifndef STAGE_H
 #define STAGE_H
 
+#include "noinitclass.h"
+
 class StageClass {
 
 		/*

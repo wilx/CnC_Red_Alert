@@ -51,6 +51,8 @@
 #include	"goptions.h"
 #include	"options.h"
 #include	"infantry.h"
+#include "AircraftTypeClass.h"
+#include "EventChoiceClass.h"
 
 
 extern char _staging_buffer[32000];

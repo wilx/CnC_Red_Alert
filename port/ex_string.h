@@ -1,3 +1,6 @@
+#ifndef EX_STRING_H
+#define EX_STRING_H
+
 #pragma once
 #include <stdlib.h>
 
@@ -18,3 +21,5 @@ int memicmp(const void *buffer1, const void *buffer2, size_t count);
 char *strupr(char *str);
 char *strlwr(char *str);
 char *strrev(char *str);
+
+#endif // EX_STRING_H

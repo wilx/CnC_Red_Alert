@@ -219,6 +219,9 @@ void VesselClass::operator delete(void * ptr)
 }
 
 
+VesselClass::operator VesselType(void) const {return Class->Type;}
+
+
 /***********************************************************************************************
  * VesselClass::Class_Of -- Fetches a reference to the vessel's class data.                    *
  *                                                                                             *
@@ -2308,6 +2311,8 @@ void VesselClass::Repair_AI(void)
 		}
 	}
 }
+
+DirType VesselClass::Turret_Facing(void) const {if (Class->IsTurretEquipped) return(SecondaryFacing.Current());return(PrimaryFacing.Current());}
 
 #ifdef FIXIT_CARRIER	//	checked - ajw 9/28/98
 /***********************************************************************************************
