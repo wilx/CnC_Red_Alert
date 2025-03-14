@@ -237,7 +237,7 @@ bool UDPInterfaceClass::Open_Socket ( SOCKET )
 
 	// enable broadcast
 	int yes = 1;
-	setsockopt (Socket, SOL_SOCKET, SO_BROADCAST, &yes, sizeof(int));
+	setsockopt (Socket, SOL_SOCKET, SO_BROADCAST, (char *)&yes, sizeof(int));
 
 	WinsockInterfaceClass::Set_Socket_Options();
 
